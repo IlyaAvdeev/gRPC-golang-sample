@@ -20,11 +20,12 @@ RUN $HOME/.local/bin/protoc --go_out=. --go_opt=paths=source_relative \
     helloworld/helloworld.proto
 RUN go mod download
 
+#without next 2 lines when running the app you get 
+# examples/helloworld/greeter_server/main.go:28:2: no required module provides package google.golang.org/grpc/examples/helloworld/helloworld; to add it:
+#    go get google.golang.org/grpc/examples/helloworld/helloworld
 RUN mkdir -p /usr/local/go/src/helloworld/helloworld
 RUN cp /app/examples/helloworld/helloworld/*.go /usr/local/go/src/helloworld/helloworld
 
-RUN ls /usr/local/go/src/helloworld/helloworld
-#RUN go get google.golang.org/grpc/examples/helloworld/helloworld
 EXPOSE 50051
 
 ENTRYPOINT ["go", "run", "examples/helloworld/greeter_server/main.go"]
