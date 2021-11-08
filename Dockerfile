@@ -28,6 +28,3 @@ RUN cp /app/examples/helloworld/helloworld/*.go /usr/local/go/src/helloworld/hel
 EXPOSE 50051
 
 ENTRYPOINT ["go", "run", "examples/helloworld/greeter_server/main.go"]
-
-
-
