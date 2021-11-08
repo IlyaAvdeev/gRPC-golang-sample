@@ -6,5 +6,4 @@
 readarray -t version < ./version
 image_name=ilyaavdeev/grpc-server-sample
 
-sudo docker build -t $image_name:$version .
-sudo docker tag $image_name:$version $image_name:latest
+sudo docker push $image_name:$version
