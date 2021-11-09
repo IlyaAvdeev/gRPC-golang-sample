@@ -26,11 +26,11 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
+	pb "helloworld/helloworld"
 )
 
 const (
-	address     = "localhost:8080"
+	address     = "banana_mama:50051"
 	defaultName = "world"
 )
 

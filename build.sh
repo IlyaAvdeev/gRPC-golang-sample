@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./def.proto
-#protoc -I .  def.proto --go_out=plugins=grpc:.
-
 readarray -t version < ./version
 image_name=ilyaavdeev/grpc-server-sample
 
-sudo docker build -t $image_name:$version .
+sudo docker build --no-cache -t $image_name:$version .
 sudo docker tag $image_name:$version $image_name:latest
+
+client_image_name=ilyaavdeev/grpc-server-client-sample
+sudo docker build  --no-cache --file Dockerfile_client -t $client_image_name:$version .
+sudo docker tag $client_image_name:$version $client_image_name:latest
