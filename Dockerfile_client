@@ -1,6 +1,8 @@
 FROM golang:1.17.2
 
 RUN apt-get update && apt-get install -y zip
+# installed ping just for debugging purposes
+#RUN apt-get update && apt-get install -y iputils-ping
 
 RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v3.15.8/protoc-3.15.8-linux-x86_64.zip && unzip protoc-3.15.8-linux-x86_64.zip -d $HOME/.local
 RUN rm protoc-3.15.8-linux-x86_64.zip
@@ -29,4 +31,4 @@ EXPOSE 8080
 RUN mkdir -p /usr/local/go/src/helloworld/helloworld
 RUN cp /app/examples/helloworld/helloworld/*.go /usr/local/go/src/helloworld/helloworld
 
-ENTRYPOINT ["go", "run", "examples/helloworld/greeter_client/main.go", "${PARAM}"]
+ENTRYPOINT go run examples/helloworld/greeter_client/main.go $PARAM
