@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./def.proto
-#protoc -I .  def.proto --go_out=plugins=grpc:.
-
 readarray -t version < ./version
 image_name=ilyaavdeev/grpc-server-sample
+docker push $image_name:$version
 
-sudo docker push $image_name:$version
+client_image_name=ilyaavdeev/grpc-server-client-sample
+docker push $client_image_name:$version
