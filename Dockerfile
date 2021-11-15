@@ -15,16 +15,16 @@ WORKDIR /app
 COPY ./grpc-go .
 
 RUN $HOME/.local/bin/protoc --go_out=. --go_opt=paths=source_relative \
-    --go-grpc_out=. --go-grpc_opt=paths=source_relative --proto_path=/app/examples/helloworld\
-    helloworld/helloworld.proto
+    --go-grpc_out=. --go-grpc_opt=paths=source_relative --proto_path=/app/examples/sb_sample\
+    sample/sample.proto
 RUN go mod download
 
 #without next 2 lines when running the app you get 
 # examples/helloworld/greeter_server/main.go:28:2: no required module provides package google.golang.org/grpc/examples/helloworld/helloworld; to add it:
 #    go get google.golang.org/grpc/examples/helloworld/helloworld
-RUN mkdir -p /usr/local/go/src/helloworld/helloworld
-RUN cp /app/examples/helloworld/helloworld/*.go /usr/local/go/src/helloworld/helloworld
+RUN mkdir -p /usr/local/go/src/sb_sample/sample
+RUN cp /app/examples/sb_sample/sample/*.go /usr/local/go/src/sb_sample/sample
 
 EXPOSE 50051
 
-ENTRYPOINT ["go", "run", "examples/helloworld/greeter_server/main.go"]
+ENTRYPOINT ["go", "run", "examples/sb_sample/sample_server/main.go"]

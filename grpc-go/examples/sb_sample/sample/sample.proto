@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "sb_sample/sample";
+  
+package sample;
+
+service Wizard {
+  rpc WhatIsAgeOf (UserName) returns (UserInfo) {}
+}
+
+// The request message containing the user's name.
+message UserName {
+  string name = 1;
+}
+
+message UserInfo {
+  string message = 1;
+  uint32 age = 2;
+}
