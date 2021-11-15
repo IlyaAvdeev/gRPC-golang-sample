@@ -36,10 +36,4 @@ func main() {
 		log.Fatalf("Error occured: %v", err)
 	}
 	log.Printf("Response: %s is %d years old", r.GetMessage(), r.GetAge())
-
-//	r, err = c.SayHelloAgain(ctx, &pb.HelloRequest{Name: name})
-//	if err != nil {
-//	    log.Fatalf("could not greet: %v", err)
-//	}
-//	log.Printf("Greeting: %s", r.GetMessage())
 }

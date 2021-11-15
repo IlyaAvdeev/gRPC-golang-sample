@@ -45,10 +45,6 @@ func (s *server) WhatIsAgeOf(ctx context.Context, in *pb.UserName) (*pb.UserInfo
 	return user_info, nil
 }
 
-//func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-//        return &pb.HelloReply{Message: "Hello again " + in.GetName()}, nil
-//}
-
 func main() {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
